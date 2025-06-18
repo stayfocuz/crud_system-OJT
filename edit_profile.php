@@ -50,6 +50,14 @@ if ($can_edit && $_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body { background-color: #f8f9fa; }
         .container { max-width: 500px; }
+        .truncate {
+    max-width: 200px;      /* Adjust width as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
     </style>
 </head>
 <body>
@@ -65,15 +73,15 @@ if ($can_edit && $_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post">
         <div class="mb-3">
             <label>Username</label>
-            <input type="text" name="username" class="form-control" value="<?php echo htmlspecialchars($user['username']); ?>" required>
+            <input type="text" name="username" class="form-control" value="<?php echo htmlspecialchars($user['username']); ?>" required maxlength="100">
         </div>
         <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+            <input type="email" name="email" class="form-control" value="<?php echo htmlspecialchars($user['email']); ?>" required maxlength="100">
         </div>
         <div class="mb-3">
             <label>Password</label>
-            <input type="text" name="password" class="form-control" value="<?php echo htmlspecialchars($user['password']); ?>" required>
+            <input type="text" name="password" class="form-control" value="<?php echo htmlspecialchars($user['password']); ?>" required maxlength="100">
         </div>
         <button class="btn btn-primary">Update Profile</button>
         <a href="profile.php?id=<?php echo $client_id; ?>" class="btn btn-secondary">Cancel</a>

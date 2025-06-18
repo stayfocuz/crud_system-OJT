@@ -33,15 +33,15 @@ $row = $result->fetch_assoc();
     <form method="post">
         <div class="mb-3">
             <label>Username</label>
-            <input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>" required>
+            <input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>" required maxlength="100">
         </div>
         <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" value="<?php echo $row['email']; ?>" required>
+            <input type="email" name="email" class="form-control" value="<?php echo $row['email']; ?>" required maxlength="100">
         </div>
         <div class="mb-3">
             <label>Password</label>
-            <input type="text" name="password" class="form-control" value="<?php echo $row['password']; ?>" required>
+            <input type="text" name="password" class="form-control" value="<?php echo $row['password']; ?>" required maxlength="100">
         </div>
         <button class="btn btn-primary">Update</button>
         <a href="index.php" class="btn btn-secondary">Cancel</a>

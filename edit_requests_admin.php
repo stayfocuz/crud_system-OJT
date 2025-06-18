@@ -15,6 +15,7 @@ if (isset($_GET['reject'])) {
 }
 
 $result = $conn->query("SELECT er.*, c.username FROM edit_requests er JOIN clients c ON er.client_id = c.id WHERE er.status='pending'");
+$pending = $result->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +27,14 @@ $result = $conn->query("SELECT er.*, c.username FROM edit_requests er JOIN clien
 <body>
 <div class="container my-5">
     <h2>Pending Edit Requests</h2>
+    <a href="edit_requests_admin.php" class="btn btn-info mb-3 notification-btn">
+        <?php if ($pending > 0): ?>
+            Edit Requests
+            <span class="badge-notify"><?php echo $pending; ?></span>
+        <?php else: ?>
+            No Edit Request
+        <?php endif; ?>
+    </a>
     <table class="table">
         <thead>
             <tr>

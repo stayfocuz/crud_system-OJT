@@ -87,6 +87,33 @@ if (isset($_GET["id"])) {
         <?php else: ?>
             <a href="request_edit.php?id=<?php echo $user['id']; ?>" class="btn btn-info mt-3">Request Edit</a>
         <?php endif; ?>
+
+        <?php
+        // Fetch latest edit request for this client
+        $status = null;
+        $status_text = '';
+        $status_class = '';
+        $req_sql = "SELECT status FROM edit_requests WHERE client_id={$user['id']} ORDER BY created_at DESC LIMIT 1";
+        $req_result = $conn->query($req_sql);
+        if ($req_result && $req_result->num_rows > 0) {
+            $row = $req_result->fetch_assoc();
+            if ($row['status'] == 'approved') {
+                $status_text = 'Approved';
+                $status_class = 'bg-success';
+            } elseif ($row['status'] == 'pending') {
+                $status_text = 'Waiting for Response';
+                $status_class = 'bg-warning text-dark';
+            } elseif ($row['status'] == 'rejected') {
+                $status_text = 'Rejected';
+                $status_class = 'bg-danger';
+            }
+        }
+        ?>
+        <?php if ($status_text): ?>
+            <span class="badge <?php echo $status_class; ?>">
+                <?php echo $status_text; ?>
+            </span>
+        <?php endif; ?>
     <?php else: ?>
         <div class="alert alert-danger mt-3">User not found.</div>
     <?php endif; ?>

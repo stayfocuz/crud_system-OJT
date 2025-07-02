@@ -117,7 +117,7 @@ if (isset($_GET["id"])) {
     <?php else: ?>
         <div class="alert alert-danger mt-3">User not found.</div>
     <?php endif; ?>
-    <a href="register.php" class="btn btn-secondary mt-4 w-100">⬅ Back to Register</a>
+    <a href="register.php" class="btn btn-secondary mt-4 w-100">✅ Done</a>
 </div>
 </body>
 </html>
